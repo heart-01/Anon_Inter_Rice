@@ -1,0 +1,15 @@
+body{
+    font-family: kanit;
+}
+/* active nav-pills */
+.nav-pills .nav-link.active, .nav-pills .nav-link.active:hover,.nav-pills .nav-link.active:focus{
+    background-color:deepskyblue;
+    color:black;
+    font-weight:550;
+}
+.Lpage:link{
+    color:black;
+}
+.Lpage:hover {
+    background-color: rgba(190, 255, 85, 0.7) ;
+}

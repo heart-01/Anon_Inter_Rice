@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteRule ^index?$ ./index.php [L]
+RewriteRule ^menu?$ ./menu.php [L]
+RewriteRule ^home?$ ./home.php [L]
+RewriteRule ^report?$ ./report.php [L]
+RewriteRule ^detailType?$ ./type.php [L]
+RewriteRule ^detailMill?$ ./mill.php [L]
+RewriteRule ^detailLap?$ ./lap.php [L]
+RewriteRule ^vehicle?$ ./vehicle.php [L]
+RewriteRule ^addAccount?$ ./addAccount.php [L]
+RewriteRule ^editAccount?$ ./editAccount.php [L]
+RewriteRule ^reportCar?$ ./reportCar.php [L]
+RewriteRule ^reportMill?$ ./reportMill.php [L]
+RewriteRule ^reportLap?$ ./reportLap.php [L]
