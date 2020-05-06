@@ -35,7 +35,7 @@
   </thead>
   <tbody>
   <?php
-    $sql = "SELECT * FROM balance_carry b, location l WHERE b.locationNo = l.locationNo";
+    $sql = "SELECT * FROM balance_carry b, location l WHERE b.locationNo = l.locationNo ORDER BY balanceDate";
     $query = mysqli_query($conn,$sql);
     $row = mysqli_num_rows($query);
     for($i=0;$i<$row;$i++){
