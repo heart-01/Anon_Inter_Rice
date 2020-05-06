@@ -56,10 +56,6 @@ function DateThai($strDate){
                     <th scope="col" >นน.ตักออก</th>
                     <th scope="col" >โรงสีปลายทาง</th>
                     <th scope="col" >นน.ปลายทาง</th>
-                    <th scope="col" >นน.ขาด</th>
-                    <th scope="col" >ค่าชั่ง</th>
-                    <th scope="col" >ราคาขาย</th>
-                    <th scope="col" >จำนวนเงิน</th>
                 </tr>
             </thead>
             <tbody>
@@ -180,10 +176,6 @@ function DateThai($strDate){
                             }
                     ?></td>
                     <td><?php echo $destination; ?></td>
-                    <td><?php echo ($scoop)-($destination) ?></td>
-                    <td><?php echo $scale; ?></td>
-                    <td><?php echo $sell; ?></td>
-                    <td><?php echo number_format( (($destination*$sell/1000))-$scale ,2); ?></td>
                 </tr>
             <?php
                 }
