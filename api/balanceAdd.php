@@ -6,9 +6,10 @@
     $dateBalance = $_POST["dateBalance"];
 
     date_default_timezone_set("Asia/Bangkok");
+    $date_Time=date("Y-m-d H:i:s");
     //$date_yesterday=date("Y-m-d", strtotime("yesterday")); 
 
-    $sql="SELECT * FROM balance_carry WHERE locationNo = '$location' AND balanceDate='$dateBalance'";
+    $sql="SELECT * FROM balance_carry WHERE locationNo = '$location' AND balanceDate LIKE '$dateBalance%'";
     //$sql="SELECT * FROM balance_carry WHERE locationNo='$location' ORDER BY balanceDate DESC LIMIT 1";
     $query=mysqli_query($conn,$sql);
     $row=mysqli_num_rows($query);
@@ -20,7 +21,7 @@
     }
 
     if($row==0){
-        $sql_add="INSERT INTO balance_carry(locationNo,balance,balanceDate) VALUES ('$location','$data_add','$dateBalance')";
+        $sql_add="INSERT INTO balance_carry(locationNo,balance,balanceDate) VALUES ('$location','$data_add','$date_Time')";
         $query_add=mysqli_query($conn,$sql_add);
         if(!$query_add){
             echo "Not Query";
@@ -31,7 +32,7 @@
         $date_old=$data["balanceDate"];
         
         $sum=$balance+$data_add;
-        $sql_up="UPDATE balance_carry SET balance='$sum' WHERE locationNo='$location' AND balanceDate='$date_old'";
+        $sql_up="UPDATE balance_carry SET balance='$sum' WHERE locationNo='$location' AND balanceDate LIKE '$date_old%'";
         $query_up=mysqli_query($conn,$sql_up);
         if(!$query_up){
             echo "Not Query";

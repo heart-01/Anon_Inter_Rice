@@ -164,7 +164,7 @@
       </div>
       <div class="modal-body">
             วันที่
-            <input class="form-control" name="dateBalance" id="dateBalance" type="date" value="<?php echo $date_yesterday ?>">
+            <input class="form-control" name="dateBalance" id="dateBalance" type="date" max="<?php echo $date_yesterday ?>" value="<?php echo $date_yesterday ?>">
             <br>
             ลานตัก
             <select class="form-control form-control-sm" id="locat" stlye="margin" name="location[]">
