@@ -79,11 +79,11 @@ function DateThai($strDate){
                     <td><?php echo $data["accountNo"]; ?></td>
                     <td><?php if($data["location"]=="noData"){echo "";}else{echo $data["location"];}?></td>
                     <td><?php if($data["type"]=="noData"){echo "";}else{echo $data["type"];}?></td>
-                    <td><?php echo number_format($data["purchase"],2); ?></td>
+                    <td><?php echo number_format($data["purchase"],0); ?></td>
                     <td><?php echo number_format($data["total"],2); ?></td>
                     <td><?php echo number_format($data["service"],2); ?></td>
-                    <td><?php echo number_format($data["average"],2); ?></td>
-                    <td><?php echo number_format($data["income"],2); ?></td>
+                    <td><?php echo number_format($data["average"],0); ?></td>
+                    <td><?php echo number_format($data["income"],0); ?></td>
                     <td><?php echo number_format($data["interest"],2); ?></td>
                     <td><?php echo number_format($data["withdraw"],2); ?></td>
                     <td><?php echo $data["note"]; ?></td>
@@ -99,10 +99,12 @@ function DateThai($strDate){
                         $row_ckBalance=mysqli_num_rows($query_ckBalance);
                         if($row_ckBalance==1){   
                             $data_ckBalance=mysqli_fetch_array($query_ckBalance);
+                            //echo 'วันที่ย้อนหลัง 1 วัน';
                         }else if($row_ckBalance==0){ //ถ้าไม่มียอดยกมาจากวันที่นั้น
                             $sql_ckBalance="SELECT * FROM balance_carry WHERE locationNo='$locationNo' ORDER BY balanceDate DESC LIMIT 1"; //ดึงยอดยกมาตัวล่าสุด
                             $query_ckBalance=mysqli_query($conn,$sql_ckBalance);
                             $data_ckBalance=mysqli_fetch_array($query_ckBalance);
+                            //echo 'ยอดยกมาตัวล่าสุด';
                         }
 
                         //ยอดยกมา
@@ -162,7 +164,7 @@ function DateThai($strDate){
                             }   
                         }
                     ?></td>
-                    <td><?php echo number_format($scoop, 2); ?></td>
+                    <td><?php echo number_format($scoop, 0); ?></td>
                     <td><?php 
                             $sql_mill="SELECT * FROM vehicle_account va, mill m WHERE va.accountNo = $accountNo AND va.millNo = m.millNo";
                             $query_mill=mysqli_query($conn,$sql_mill);
