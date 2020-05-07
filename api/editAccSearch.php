@@ -50,6 +50,7 @@
                         <th scope="col" >ดอกเบี้ย</th>
                         <th scope="col" >เบิก</th>
                         <th scope="col" >หมายเหตุ</th>
+                        <th scope="col" >เงินคงเหลือ</th>
                         <th scope="col" >ทะเบียนรถ</th>
                         <th scope="col" >นน.ตักออก</th>
                         <th scope="col" >โรงสีปลายทาง</th>
@@ -77,6 +78,7 @@
                         <td><?php echo number_format($data["interest"],2); ?></td>
                         <td><?php echo number_format($data["withdraw"],2); ?></td>
                         <td><?php echo $data["note"]; ?></td>
+                        <td><?php echo $data["balance"]; ?></td>
                         <td><?php
                             $sql_vehicle_account="SELECT * FROM vehicle_account va, vehicle v WHERE va.accountNo = $accountNo AND va.vehicleNo = v.vehicleNo";
                             $query_vehicle_account=mysqli_query($conn,$sql_vehicle_account);
