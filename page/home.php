@@ -99,10 +99,12 @@ function DateThai($strDate){
                         $row_ckBalance=mysqli_num_rows($query_ckBalance);
                         if($row_ckBalance==1){   
                             $data_ckBalance=mysqli_fetch_array($query_ckBalance);
+                            //echo 'วันที่ย้อนหลัง 1 วัน';
                         }else if($row_ckBalance==0){ //ถ้าไม่มียอดยกมาจากวันที่นั้น
                             $sql_ckBalance="SELECT * FROM balance_carry WHERE locationNo='$locationNo' ORDER BY balanceDate DESC LIMIT 1"; //ดึงยอดยกมาตัวล่าสุด
                             $query_ckBalance=mysqli_query($conn,$sql_ckBalance);
                             $data_ckBalance=mysqli_fetch_array($query_ckBalance);
+                            //echo 'ยอดยกมาตัวล่าสุด';
                         }
 
                         //ยอดยกมา

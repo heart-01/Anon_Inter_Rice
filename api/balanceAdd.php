@@ -21,7 +21,7 @@
     }
 
     if($row==0){
-        $sql_add="INSERT INTO balance_carry(locationNo,balance,balanceDate) VALUES ('$location','$data_add','$date_Time')";
+        $sql_add="INSERT INTO balance_carry(locationNo,balance,balanceDate) VALUES ('$location','$data_add','$dateBalance')";
         $query_add=mysqli_query($conn,$sql_add);
         if(!$query_add){
             echo "Not Query";
