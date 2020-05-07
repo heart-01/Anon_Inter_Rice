@@ -15,7 +15,8 @@ $date_Time=date("Y-m-d H:i:s");
 
 $date_yesterday=date("Y-m-d", strtotime("yesterday")); 
 
-$sql = "SELECT * FROM rice_account r,location l,type t WHERE r.locationNo = l.locationNo AND r.typeNo = t.typeNo AND r.datePost LIKE'$date%' ORDER BY r.dated , r.accountNo";$query = mysqli_query($conn,$sql);
+$sql = "SELECT * FROM rice_account r,location l,type t WHERE r.locationNo = l.locationNo AND r.typeNo = t.typeNo AND r.datePost LIKE'$date%' ORDER BY r.dated , r.accountNo";
+$query = mysqli_query($conn,$sql);
 $row = mysqli_num_rows($query);
 
 function DateThai($strDate){
@@ -107,8 +108,8 @@ function DateThai($strDate){
                         $Balance="";
                         if(isset($data_ckBalance["balance"])){
                             $Balance=$data_ckBalance["balance"];
-                            ${"sta$locationNo"} = 1; //สถานะเช็คเพื่อให้รู้ว่ามีการเพิ่มข้อมูลในลานตักนี้
                         }
+                        ${"sta$locationNo"} = 1; //สถานะเช็คเพื่อให้รู้ว่ามีการเพิ่มข้อมูลในลานตักนี้
                         ${"Bal$locationNo"}=$Balance; //เก็บค่ายอดยกมาของแต่ละลานตัก
                         ${"lap$locationNo"}; //เก็บค่าจากการคำนวณของแต่ละลานตัก
    
@@ -119,6 +120,9 @@ function DateThai($strDate){
                             ${"lap$locationNo"} = ( (float)${"lap$locationNo"} + (float)${"Bal$locationNo"} )-(float)($data["total"]+$data["service"]+$data["withdraw"]+$data["interest"]);
                             echo number_format( ${"lap$locationNo"} ,2); 
                         }
+                        
+                        $sql_update_balance_account = "UPDATE rice_account SET balance = ${"lap$locationNo"} WHERE accountNo = $accountNo"; //บันทึกยอดคงเหลือของแต่ละบัญชี
+                        $query_update_balance_account = mysqli_query($conn,$sql_update_balance_account);
                         
                     ?></td>
                     

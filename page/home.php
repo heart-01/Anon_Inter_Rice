@@ -29,6 +29,7 @@ function DateThai($strDate){
     $strMonthThai=$strMonthCut[$strMonth];
     return "$strDay $strMonthThai $strYear";
 }
+
 ?>
 <div class="col-md-12" style="margin-top: 20px;">
     <p class="text-success" ><i class="fas fa-book"></i> บัญชีวันนี้มีทั้งหมด <?php echo "$row_count"; ?> รายการ </p>
@@ -99,7 +100,7 @@ function DateThai($strDate){
                         $row_ckBalance=mysqli_num_rows($query_ckBalance);
                         if($row_ckBalance==1){   
                             $data_ckBalance=mysqli_fetch_array($query_ckBalance);
-                            //echo 'วันที่ย้อนหลัง 1 วัน';
+                            //echo 'เอาวันที่ย้อนหลัง 1 วัน';
                         }else if($row_ckBalance==0){ //ถ้าไม่มียอดยกมาจากวันที่นั้น
                             $sql_ckBalance="SELECT * FROM balance_carry WHERE locationNo='$locationNo' ORDER BY balanceDate DESC LIMIT 1"; //ดึงยอดยกมาตัวล่าสุด
                             $query_ckBalance=mysqli_query($conn,$sql_ckBalance);
@@ -111,11 +112,11 @@ function DateThai($strDate){
                         $Balance="";
                         if(isset($data_ckBalance["balance"])){
                             $Balance=$data_ckBalance["balance"];
-                            ${"sta$locationNo"} = 1; //สถานะเช็คเพื่อให้รู้ว่ามีการเพิ่มข้อมูลในลานตักนี้
                         }
+                        ${"sta$locationNo"} = 1; //สถานะเช็คเพื่อให้รู้ว่ามีการเพิ่มข้อมูลในลานตักนี้
                         ${"Bal$locationNo"}=$Balance; //เก็บค่ายอดยกมาของแต่ละลานตัก
                         ${"lap$locationNo"}; //เก็บค่าจากการคำนวณของแต่ละลานตัก
-   
+
                         if($in!=0){
                             ${"lap$locationNo"} =( (float)${"lap$locationNo"} + (float)${"Bal$locationNo"} + (float)$in )-(float)($data["total"]+$data["service"]+$data["withdraw"]+$data["interest"]);
                             echo number_format( ${"lap$locationNo"} ,2); 
