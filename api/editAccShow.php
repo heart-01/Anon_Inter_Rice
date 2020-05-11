@@ -1,4 +1,7 @@
 <?php
+    date_default_timezone_set("Asia/Bangkok");
+    $date=date("Y-m-d");
+    
     if(isset($_POST["accountNo"])){  
         require_once '../api/connect.php';
 
@@ -63,12 +66,13 @@
                     <th scope="col" class="col-1" >ดอกเบี้ย</th>
                     <th scope="col" class="col-1" >เบิก</th>
                     <th scope="col" class="col-2" >หมายเหตุ</th>
+                    <th scope="col" class="col-1" >เงินคงเหลือ</th>
                     <th scope="col" class="col-2" >ทะเบียนรถ</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="d-flex">
-                    <td class="col-2"><input class="form-control" name="date" type="date" value="<?php echo $data["dated"] ?>"><input class="form-control" name="datePost" type="hidden" value="<?php echo $data["datePost"] ?>"></td>
+                    <td class="col-2"><input class="form-control" name="date" type="date" max="<?php echo $date ?>" value="<?php echo $data["dated"] ?>"><input class="form-control" name="datePost" type="hidden" value="<?php echo $data["datePost"] ?>"></td>
                     <td class="col-2 input-group">
                         <select class="form-control form-control-sm location" stlye="margin" name="location">
                             <?php
@@ -121,6 +125,7 @@
                     <td class="col-1"><input class="form-control form-control-sm interest input-no-spinner" step="0.01" name="interest" value="<?php echo $data["interest"]; ?>" type="number"></td>
                     <td class="col-1"><input class="form-control form-control-sm withdraw input-no-spinner" step="0.01" name="withdraw" value="<?php echo $data["withdraw"]; ?>" type="number"></td>   
                     <td class="col-2"><input class="form-control form-control-sm note" name="note" value="<?php echo $data["note"]; ?>" type="text"></td>
+                    <td class="col-1"><input class="form-control form-control-sm  input-no-spinner balance" step="0.01" name="balance" value="<?php echo $data["balance"]; ?>" type="number"></td>
                     <td class="col-2 input-group">
                         <select multiple class="form-control form-control-sm selectpicker vehicle" name="1[]" dropupAuto="false" data-size="3" data-live-search="true">
                             <?php

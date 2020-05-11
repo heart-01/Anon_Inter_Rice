@@ -84,12 +84,13 @@
                     <th scope="col" class="col-1" >ดอกเบี้ย</th>
                     <th scope="col" class="col-1" >เบิก</th>
                     <th scope="col" class="col-2" >หมายเหตุ</th>
+                    <th scope="col" class="col-1" >เงินคงเหลือ</th>
                     <th scope="col" class="col-2" >ทะเบียนรถ</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="d-flex">
-                    <td class="col-2"><input class="form-control" name="date[]" type="date" value="<?php echo $date ?>"></td>
+                    <td class="col-2"><input class="form-control" name="date[]" type="date" max="<?php echo $date ?>" value="<?php echo $date ?>"></td>
                     <td class="col-2 input-group">
                         <select class="form-control form-control-sm location" stlye="margin" name="location[]">
                             <?php
@@ -130,6 +131,7 @@
                     <td class="col-1"><input class="form-control form-control-sm interest input-no-spinner" step="0.01" name="interest[]" type="number"></td>
                     <td class="col-1"><input class="form-control form-control-sm withdraw input-no-spinner" step="0.01" name="withdraw[]" type="number"></td>   
                     <td class="col-2"><input class="form-control form-control-sm note" name="note[]" type="text"></td>
+                    <td class="col-1"><input class="form-control form-control-sm balance input-no-spinner" name="balance[]" type="number"></td>
                     <td class="col-2 input-group">
                         <select multiple class="form-control form-control-sm selectpicker vehicle" name="1[]" dropupAuto="false" data-size="3" data-live-search="true">
                             <?php
@@ -164,7 +166,7 @@
       </div>
       <div class="modal-body">
             วันที่
-            <input class="form-control" name="dateBalance" id="dateBalance" type="date" max="<?php echo $date_yesterday ?>" value="<?php echo $date_yesterday ?>">
+            <input class="form-control" name="dateBalance" id="dateBalance" type="date" max="<?php echo $date ?>" value="<?php echo $date_yesterday ?>">
             <br>
             ลานตัก
             <select class="form-control form-control-sm" id="locat" stlye="margin" name="location[]">

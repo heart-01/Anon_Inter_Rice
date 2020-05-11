@@ -20,6 +20,7 @@
     $interest=$_POST["interest"];
     $withdraw=$_POST["withdraw"];
     $note=$_POST["note"];
+    $balance=$_POST["balance"];
     $status=$_POST["status"];
 
     $sta_ve="0";
@@ -52,6 +53,9 @@
     }
     if($withdraw==""){
         $withdraw=0;
+    }
+    if($balance==""){
+        $balance=0;
     }
 
     if(preg_match('/[\'^£$&()}{@#~?><>,|=_¬;]/', $note))
@@ -93,30 +97,12 @@
             }
         }
 
-            $sql="UPDATE rice_account SET dated='$dated', locationNo='$location', typeNo='$type', purchase='$purchase', total='$total', service='$service', average='$average', income='$income', interest='$interest', withdraw='$withdraw', note='$note' WHERE accountNo='$accountNo'";
+            $sql="UPDATE rice_account SET dated='$dated', locationNo='$location', typeNo='$type', purchase='$purchase', total='$total', service='$service', average='$average', income='$income', interest='$interest', withdraw='$withdraw', note='$note', balance='$balance' WHERE accountNo='$accountNo'";
             $query = mysqli_query($conn,$sql);
             if(!$query){
                 echo "Not Query";
                 exit();
             }
-
-            if($date!=$datePost_sub){
-                $result=$income-$income_old;
-                $sql_balance="";
-                if($result!=0){
-                    if($result>0){
-                        $sql_balance="UPDATE balance_carry SET balance=balance+$result , balanceDate='$date_now'  WHERE balanceDate >= '$dated' AND locationNo = '$location'";
-                        //echo "<script>console.log('$result>0 = '$sql_balance);</script>";
-                    }else if($result<0){
-                        $sql_balance="UPDATE balance_carry SET balance=balance+$result , balanceDate='$date_now' WHERE balanceDate >= '$dated' AND locationNo = '$location'";
-                        //echo "<script>console.log('$result<0 = '$sql_balance);</script>";
-                    }
-                    $query_balance = mysqli_query($conn,$sql_balance);
-                    if(!$query_balance){
-                        echo "Not Query";
-                        exit();
-                    }
-                }
-            }
+            
     }
 ?>

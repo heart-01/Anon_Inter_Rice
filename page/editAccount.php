@@ -33,8 +33,10 @@
         
         //ค้นหา
         $("#alert").hide();
+        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4',
+            maxDate: today,
             format: 'dd-mm-yyyy',
             change: function (e) {
                 var txtDate = $(this).val();

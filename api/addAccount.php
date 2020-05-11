@@ -12,6 +12,7 @@
     $interest=$_POST["interest"];
     $withdraw=$_POST["withdraw"];
     $note=$_POST["note"];
+    $balance=$_POST["balance"];
 
     $qty_input=$_POST["qty_input"];
     
@@ -19,7 +20,7 @@
     $date_now=date("Y-m-d H:i:s");
     $date_yesterday=date("Y-m-d", strtotime("yesterday")); 
 
-    if(empty($purchase[0]) && empty($total[0]) && empty($service[0]) && empty($average[0]) && empty($income[0]) && empty($interest[0]) && empty($withdraw[0]) && empty($note[0]) ){          
+    if(empty($purchase[0]) && empty($total[0]) && empty($service[0]) && empty($average[0]) && empty($income[0]) && empty($interest[0]) && empty($withdraw[0]) && empty($note[0]) && empty($balance[0]) ){          
         echo "Empty";
         exit();
     }
@@ -94,6 +95,9 @@
         if($withdraw[$i]==""){
             $withdraw[$i]=0;
         }
+        if($balance[$i]==""){
+            $balance[$i]=0;
+        }
 
         if(preg_match('/[\'^£$&()}{@#~?><>,|=_¬;]/', $note[$i]))
         {
@@ -136,7 +140,7 @@
                     $type[$i]="1";
                 }
 
-                $sql="INSERT INTO rice_account(accountNo,dated,datePost,locationNo,typeNo,purchase,total,service,average,income,interest,withdraw,note) VALUES ('$riceAcc','$date[$i]','$date_now','$location[$i]','$type[$i]','$purchase[$i]','$total[$i]','$service[$i]','$average[$i]','$income[$i]','$interest[$i]','$withdraw[$i]','$note[$i]')"; 
+                $sql="INSERT INTO rice_account(accountNo,dated,datePost,locationNo,typeNo,purchase,total,service,average,income,interest,withdraw,note,balance) VALUES ('$riceAcc','$date[$i]','$date_now','$location[$i]','$type[$i]','$purchase[$i]','$total[$i]','$service[$i]','$average[$i]','$income[$i]','$interest[$i]','$withdraw[$i]','$note[$i]','$balance[$i]')"; 
     
                 $query = mysqli_query($conn,$sql);
                 if(!$query){

@@ -21,7 +21,7 @@
     $row_type=mysqli_num_rows($query_type);
 ?>
 <tr class="d-flex">
-    <td class="col-2"><input class="form-control" name="date[]" type="date" value="<?php echo $date ?>"></td>
+    <td class="col-2"><input class="form-control" name="date[]" type="date" max="<?php echo $date ?>" value="<?php echo $date ?>"></td>
     <td class="col-2 input-group">
         <select class="form-control form-control-sm location" stlye="margin" name="location[]">
             <?php
@@ -62,6 +62,7 @@
     <td class="col-1"><input class="form-control form-control-sm interest input-no-spinner" step="0.01" name="interest[]" type="number"></td>
     <td class="col-1"><input class="form-control form-control-sm withdraw input-no-spinner" step="0.01" name="withdraw[]" type="number"></td>   
     <td class="col-2"><input class="form-control form-control-sm note" name="note[]" type="text"></td>
+    <td class="col-1"><input class="form-control form-control-sm balance input-no-spinner" name="balance[]" type="number"></td>
     <td class="col-2 input-group">
         <select multiple class="form-control form-control-sm selectpicker vehicle" name="<?php echo $name; ?>" dropupAuto="false" data-size="3" data-live-search="true">
             <?php

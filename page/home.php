@@ -88,44 +88,7 @@ function DateThai($strDate){
                     <td><?php echo number_format($data["interest"],2); ?></td>
                     <td><?php echo number_format($data["withdraw"],2); ?></td>
                     <td><?php echo $data["note"]; ?></td>
-                    <td><?php
-                        $locationNo = $data["locationNo"];
-                        $in=$data["income"];
-                        $dated = $data["dated"];
-                        $dt=strtotime("-1 day", strtotime($dated));
-                        $new_dated = date("Y-m-d",$dt);
-                        
-                        $sql_ckBalance="SELECT * FROM balance_carry WHERE locationNo='$locationNo' AND balanceDate LIKE'$new_dated%'"; //ดึงยอดยกมาจากวันที่ย้อนหลัง 1 วัน
-                        $query_ckBalance=mysqli_query($conn,$sql_ckBalance);
-                        $row_ckBalance=mysqli_num_rows($query_ckBalance);
-                        if($row_ckBalance==1){   
-                            $data_ckBalance=mysqli_fetch_array($query_ckBalance);
-                            //echo 'เอาวันที่ย้อนหลัง 1 วัน';
-                        }else if($row_ckBalance==0){ //ถ้าไม่มียอดยกมาจากวันที่นั้น
-                            $sql_ckBalance="SELECT * FROM balance_carry WHERE locationNo='$locationNo' ORDER BY balanceDate DESC LIMIT 1"; //ดึงยอดยกมาตัวล่าสุด
-                            $query_ckBalance=mysqli_query($conn,$sql_ckBalance);
-                            $data_ckBalance=mysqli_fetch_array($query_ckBalance);
-                            //echo 'ยอดยกมาตัวล่าสุด';
-                        }
-
-                        //ยอดยกมา
-                        $Balance="";
-                        if(isset($data_ckBalance["balance"])){
-                            $Balance=$data_ckBalance["balance"];
-                        }
-                        ${"sta$locationNo"} = 1; //สถานะเช็คเพื่อให้รู้ว่ามีการเพิ่มข้อมูลในลานตักนี้
-                        ${"Bal$locationNo"}=$Balance; //เก็บค่ายอดยกมาของแต่ละลานตัก
-                        ${"lap$locationNo"}; //เก็บค่าจากการคำนวณของแต่ละลานตัก
-
-                        if($in!=0){
-                            ${"lap$locationNo"} =( (float)${"lap$locationNo"} + (float)${"Bal$locationNo"} + (float)$in )-(float)($data["total"]+$data["service"]+$data["withdraw"]+$data["interest"]);
-                            echo number_format( ${"lap$locationNo"} ,2); 
-                        }else{
-                            ${"lap$locationNo"} = ( (float)${"lap$locationNo"} + (float)${"Bal$locationNo"} )-(float)($data["total"]+$data["service"]+$data["withdraw"]+$data["interest"]);
-                            echo number_format( ${"lap$locationNo"} ,2); 
-                        }
-                        
-                    ?></td>
+                    <td><?php echo $data["balance"]; ?></td>
                     
                     <td><?php
                         $sql_vehicle_account="SELECT * FROM vehicle_account va, vehicle v WHERE va.accountNo = $accountNo AND va.vehicleNo = v.vehicleNo";
